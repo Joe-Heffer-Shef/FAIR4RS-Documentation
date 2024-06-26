@@ -4,7 +4,7 @@ teaching: 10
 exercises: 2
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::::::::::: questions
 
 - What is software documentation?
 - Why is documenting code useful for researchers?
@@ -128,32 +128,33 @@ def calculate_sine(angle: float) -> float:
 
 ### R
 
-This is a function written in the R programming language that calculates a mathematical result, the details of which aren't relevant. This code has plenty of documentation to help us read and understand it.
+This is a function written in the R programming language that calculates a mathematical result, the details of which
+aren't relevant. This code has plenty of documentation to help us read and understand it. R uses the
+[roxygen2][roxygen2] package to build the docstrings into internal documentation and optionally external API documentation.
 
 ```R
-# Function to calculate sine using Taylor series approximation
+#' Calculate the sine of an angle
+#'
+#' @description
+#'
+#' This function uses the first four terms of the Taylor series for sine to approximate
+#' the value. This is a simple and efficient method for most applications.
+#'
+#' @param angle
+#'
+#' @returns The sine of the angle (sun(angle)).
 calculate_sine <- function(angle) {
-  """
-  This function calculates the sine of an angle using the first four terms of the Taylor series.
-
-  Args:
-      angle (numeric): The angle in radians.
-
-  Returns:
-      numeric: The sine of the angle (sin(angle)).
-  """
-  
   sin_value <- angle
-  
+
   # Loop for the first four terms
   for (i in 1:4) {
     factorial <- factorial(2 * i)
     sign <- (-1)^(i %% 2)  # Alternate signs with modulo (%)
-    
+
     # Add terms for sine
     sin_value <- sin_value + sign * (angle^(2 * i)) / factorial
   }
-  
+
   return(sin_value)
 }
 ```
@@ -173,3 +174,5 @@ Of course, there may be some syntax in this example that is unfamiliar to you&md
  - **Knowledge transfer:** Your software package will be easier to maintain in the long term if others are able to learn about it and look after it after the original developers move on.
 
 ::::::
+
+[roxygen2]: https://roxygen2.r-lib.org/index.html
