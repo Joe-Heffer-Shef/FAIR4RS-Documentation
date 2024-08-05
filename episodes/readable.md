@@ -324,7 +324,11 @@ In R, there is no inbuilt functionality for annotating the expected types of var
 #' @param b integer
 #' @return integer
 add <- function(a, b) {
-  return(a + b)
+  if (is.numeric(a) && is.numeric(b)) {
+    return(a + b)
+  } else {
+    return(paste(a, b, sep = ""))
+  }
 }
 ```
 
