@@ -27,6 +27,8 @@ If you’re publishing a research software package, one of the most common ways 
 
 We learned about _functions_ in an earlier module. Functions help us to break our code into smaller units that have a single purpose. By documenting those functions effectively, we aim to **explain their purpose** to future users and maintainers of that code. We also need to describe all the expected inputs and outputs of the function.
 
+### Documentation strings
+
 We describe functions by using a feature of many programming languages called documentation strings, usually abbreviated to **docstring**. A documentation string is a piece of text that describes that piece of code and helps people to use it.
 
 To make a docstring, we write special comments in our code using syntax which is specific to each programming language, although the principle is the same.
@@ -178,9 +180,40 @@ Help function in R and Python e.g.
 help(print)
 ```
 
-TODO Usage examples for functions.
+## Usage examples
 
-Code snippets: comprehensive collections of code examples that demonstrate how to use functions effectively in different scenarios.
+We can also include demonstrations of how to use our code by providing code snippets. To do this, we write a collection of sample code that demonstrate how to use functions effectively in different scenarios.
+
+To do this, let's add an examples section to our documentation string. Each code example has a prefix of `>>>` which represents the input prompt on the Python interpreter. Some code editors will provide syntax highlighting of these code snippets.
+
+```python
+def add(x, y):
+    """
+    Calculate the sum of two numbers.
+
+    Args:
+        x: The first number to add. (float or int)
+        y: The second number to add. (float or int)
+
+    Returns:
+        The sum of x and y. (float or int)
+        
+    Examples:    
+    >>> add(1, 1)
+    2
+    >>> add(1.3, 5.3)
+    6.6
+    """
+    return x + y
+```
+
+:::: spoiler
+
+### Using docstrings to create automatic tests
+
+These code examples can be used as automatic tests using the [doctest](https://docs.python.org/3/library/doctest.html) module which is built into Python.
+
+::::
 
 ## Best practices
 
@@ -190,6 +223,21 @@ Clarity is key. Be **concise**. Describe the essential information that user nee
 
 Be **consistent**. Decide a style of docstring and use that everywhere across your software project. If you're working on a larger project with multiple developers, refer to the coding conventions and, if in doubt, follow the style of existing code.
 
+:::: spoiler
+
+### Docstring conventions
+
+There are several different **standards** for documentation strings. A standard is a convention that determines how the docstrings will be organised and the syntax that is used to represent the arguments, data types, etc.
+
+A list of documentation string standards in Python:
+
+ - The [PEP 257](https://peps.python.org/pep-0257/) docstring standard was designed by the maintainers of the Python programming langauge.
+ - The [Google Style Guide](https://google.github.io/styleguide/pyguide.html#381-docstrings) sets out a docstring format.
+ - [Sphinx docstring format](https://www.sphinx-doc.org/en/master/), which has a [NumpyDoc extension](https://numpydoc.readthedocs.io/en/latest/format.html) designed for scientific use.
+ 
+It doesn't _really_ matter which one you select, as long as it's used consistently across a project and it's clear what the syntax means. Some standards are better-supported by other tools such as <abbr title="Integrated development environments">IDEs</abbr> and documentation generators.
+
+::::
 
 ## Automatically generate docstrings
 
